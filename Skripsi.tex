@@ -1,0 +1,89 @@
+\documentclass{SkripsiUnesa}
+
+\begin{document}
+	\linespread{1.15}
+
+\input{DataSkripsi}
+
+\Awal
+\HalamanJudul
+\SampulDalam
+\HalamanPersetujuan
+\HalamanPengesahan
+\Orisinalitas
+\newpage
+%-------------------------------
+\KataPengantar
+
+Tulis Kata Pengantar disini
+
+\begin{Abstrak}
+	Ebola merupakan penyakit menular yang mematikan dan disebabkan oleh virus ebola dari famili Filoviridae, dan genus Ebolavirus. Penularan ke manusia diakibatkan oleh hewan atau bangkai hewan yang terinfeksi, seperti gorila, kera, simpanse, kelelawar, dan sebagainya. Virus ini juga dapat disebarkan melalui hubungan seksual dengan penderita.
+	
+	Penelitian ini bertujuan untuk merekonstruksi model matematika dari penyebaran virus Ebola dengan kombinasi transmisi seksual dan non-seksual berdasarkan model epidemik SIR-SI. Populasi dalam komunitas terdiri dari populasi manusia dan populasi kelelawar. Pada populasi manusia dibagi menjadi tiga, yakni populasi manusia rentan, populasi manusia terinfeksi dan populasi manusia yang telah sembuh. Sedangkan, terdapat dua pada populasi kelelawar yaitu populasi kelelawar rentan dan populasi kelelawar terinfeksi. Pada manusia terinfeksi dapat menyebarkan virus terhadap manusia rentan melalui hubungan seksual. 
+	\katakunci{Analisis kestabilan, virus Ebola, diagram kompartemen, titik kesetimbangan, linierisasi}
+\end{Abstrak}
+
+\begin{Abstract}
+	Ebola is a deadly infectious disease, caused by the ebola virus from the family of Filoviridae, and genus Ebolavirus. Most of the transmission to humans is caused by animals or carcasses of infected animals, such as gorillas, monkeys, chimpanzees, bats and others. This virus can also be spread through sexual contact with the patient.
+	
+	This study aims to reconstruct a mathematical model of the spreading of the Ebola virus with combinations of sexual and non-sexual transmission routes based on the SIR-SI epidemic model. The population within a community consists of the human population and the bat population. In the human population, it is divided into three cases, namely the vulnerable human population, the infected human population and the healed human population. Whereas, there are only two in the bat population that is the population of vulnerable bats and the population of infected bats. Infected humans can spread the virus to vulnerable humans through sexual intercourse.
+	\keywords{Stability analysis, Ebola virus, compartment diagram, the equilibrium point, linearization}
+\end{Abstract}
+\DaftarIsi
+\DaftarGambar
+\DaftarSimbol
+\vskip 3ex
+\begin{tabular}{lccl}
+	$m$ & & & Massa\\
+	$p$ & & & Momentum\\
+	$F$ & & & Gaya\\
+	$P$ & & & Tekanan\\
+	$A$ & & & Luas permukaan\\
+	$g$ & & & Percepatan gravitasi bumi\\
+	$h$ & & & Kedalaman sungai\\
+	$\rho$ & & & Massa jenis air sungai\\
+	$\mu$ & & & Viskositas air\\
+	$\nu$ & & & Viskositas kinematik\\
+	$\tau$ & & & Tekanan viskose\\
+	$c$ & & & Kecepatan bunyi\\
+	$L$ & & & Panjang\\
+	$\Omega$ & & & Kecepatan anguler\\
+	$\sigma$ & & & Tegangan permukaan\\
+	$Q$ & & & Debit\\
+	$F_s$ & & & \textit{Surface force}\\
+	$F_b$ & & & \textit{Body force}\\
+	$\textbf{V}$ & & & Kecepatan\\
+	$\textbf{x}$ & & & Jarak\\
+	$C$ & & & Konsentrasi\\
+	$t$ & & & Waktu\\
+	$P_x$ & & & Gradien tekanan pada-$x$\\
+	$P_y$ & & & Gradien tekanan pada-$y$\\
+\end{tabular}
+\newpage
+
+\Inti
+
+\include{Bab_1/Pendahuluan}
+
+%\include{Bab_2/Bab2}
+
+%\include{Bab_3/Bab3}
+
+%\include{Bab_4/Bab4}
+
+%\include{Bab_5/Bab5}
+
+\nocite{*}
+
+\DaftarPustaka{Pustaka}
+
+\BukaLampiran
+
+\lampiran{\textit{Source code}}
+\lstinputlisting[language=Python]{epidemiology.py}
+
+\lampiran{Biodata Penulis}
+Biodata Penulis
+
+\end{document}
