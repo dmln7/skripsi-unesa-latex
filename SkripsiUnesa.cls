@@ -1,10 +1,9 @@
-\ProvidesClass{SkripsiUnesa}[25/1/2023 v1.05]
+\ProvidesClass{SkripsiUnesa}[30/1/2023 v1.1]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[a5paper,10pt,twoside,openright]{book}
 \RequirePackage[hmargin={2.3cm,2cm},vmargin={2.5cm,2cm}]{geometry}
-\RequirePackage{graphicx,mathptmx,sectsty,amssymb,amsmath,amsthm,amsfonts,indentfirst,tabularx,ifthen,lscape,mathpazo,hyperref,array,breqn,mathtools,subcaption,multirow,enumerate,listings,natbib}
+\RequirePackage{graphicx,sectsty,amssymb,amsmath,amsthm,amsfonts,pxfonts,indentfirst,tabularx,ifthen,lscape,hyperref,array,breqn,mathtools,subcaption,listings,multirow,natbib,tikz,wrapfig}
 %\RequirePackage[bahasa]{babel}
-\RequirePackage[table]{xcolor}
 
 %
 \newcommand{\@judul}{Judul Skripsi}
@@ -266,7 +265,7 @@
 		& Surabaya, \@tglsidang\\
 		& Yang membuat pernyataan,\\[3ex]
 		& Meterai\\
-		& (Rp. 10.000)\\[4ex]
+		& (Rp. 10.000)\\[6ex]
 		& \@nama\\
 		& NIM. \@NIM
 	\end{tabular}
@@ -372,6 +371,7 @@
    %\pagestyle{myheadings}
     \pagestyle{plain}
 }
+
 \setlength{\parindent}{.7cm}
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
                     \thispagestyle{plain}%
@@ -440,6 +440,14 @@
                                     {\normalfont\normalsize\bfseries}}
 \renewcommand*\thechapter{\@Roman\c@chapter}
 \renewcommand*\thesection{\@Alph\c@section.}
+
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposisi}
+\newtheorem{corollary}[theorem]{Akibat}
+\newtheorem{axiom}[theorem]{Aksioma}
+\newtheorem{example}[theorem]{Contoh}
+\newtheorem{definition}[theorem]{Definisi}
 %%%-------------setting daftar isi/tabel/gambar------------------
 \renewcommand\@dotsep{2}
 \renewcommand*\l@chapter[2]{%
@@ -464,15 +472,22 @@
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{7.8em}{4.1em}}
 \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{6em}}
 \renewcommand*\l@table{\@dottedtocline{1}{1.5em}{5em}}
+
 %%%%%%------------------------
+\renewcommand\thetheorem
+	{\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@theorem}
+
 \renewcommand\theequation
-  {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@equation}
+	{\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@equation}
+
 \renewcommand \thefigure
-     {\ifnum \c@chapter>\z@ \figurename\space \@arabic\c@chapter.\fi \@arabic\c@figure}
-\def\fnum@figure{\nobreakspace\thefigure}
+	{\ifnum \c@chapter>\z@ \figurename\space \@arabic\c@chapter.\fi \@arabic\c@figure}
+	\def\fnum@figure{\nobreakspace\thefigure}
+
 \renewcommand \thetable
      {\ifnum \c@chapter>\z@ \tablename\space  \@arabic\c@chapter.\fi \@arabic\c@table}
-\def\fnum@table{\nobreakspace\thetable}
+     \def\fnum@table{\nobreakspace\thetable}
+
 %%%%---------------------------------
 \newcommand\DaftarPustaka[1]{%
 	\cleardoublepage
@@ -516,12 +531,12 @@
 	}{\end{enumerate}}
 
 %-----------------------------------
-%\RequirePackage{picins}
-%\newcommand\biodata[1]{%-----------
-  %\newsavebox{\foto}
-  %\savebox{\foto}[3cm][b]{\includegraphics[width=3.5cm,height=5cm]{#1}}
-  %\parpic(3.5cm,5.5cm){\usebox\foto}
-%}
+\newcommand\biodata[1]{%-----------
+  \begin{wrapfigure}{l}{3cm}
+  	{\includegraphics[width=3cm,height=4cm]{#1}}
+  \end{wrapfigure}
+}
+
 %%%------------- PENYESUAIAN ISTILAH ---------------------------
 \renewcommand\contentsname{DAFTAR ISI}
 \renewcommand\listfigurename{DAFTAR GAMBAR}
@@ -532,6 +547,41 @@
 \renewcommand\tablename{Tabel}
 \renewcommand\chaptername{BAB}
 \renewcommand\appendixname{Lampiran}
+\renewcommand\proofname{Bukti}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	firstnumber=1,                % start line enumeration with line 1000
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Python,                 % the language of the code
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	%title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
 
 \lefthyphenmin=5
 \righthyphenmin=5
