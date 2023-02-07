@@ -1,10 +1,11 @@
-\ProvidesClass{SkripsiUnesa}[30/1/2023 v1.1]
+\ProvidesClass{SkripsiUnesa}[07/02/2023 v1.3]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[a5paper,10pt,twoside,openright]{book}
-\RequirePackage[hmargin={2.3cm,2cm},vmargin={2.5cm,2cm}]{geometry}
-\RequirePackage{graphicx,sectsty,amssymb,amsmath,amsthm,amsfonts,pxfonts,indentfirst,tabularx,ifthen,lscape,hyperref,array,breqn,mathtools,subcaption,listings,multirow,natbib,tikz,wrapfig}
-%\RequirePackage[bahasa]{babel}
-
+\RequirePackage[hmargin={2.5cm,2cm},vmargin={2.5cm,2cm}]{geometry}
+\RequirePackage{graphicx,sectsty,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,glossaries,listings,wrapfig}
+\RequirePackage[bahasa]{babel}
+\usetikzlibrary{shapes.geometric, arrows}
+\loadglsentries{Istilah.tex}
 %
 \newcommand{\@judul}{Judul Skripsi}
 \DeclareRobustCommand{\Judul}[1]{%
@@ -30,21 +31,21 @@
 \DeclareRobustCommand\Programme[1]{%
 	\renewcommand\@prodiEng{#1}
 }
-\newcommand\@dep{Matematika}
-\DeclareRobustCommand\Departemen[1]{%
-   \renewcommand\@dep{#1}
+%\newcommand\@dep{Matematika}
+%\DeclareRobustCommand\Departemen[1]{%
+%   \renewcommand\@dep{#1}
+%}
+%\newcommand\@dept{Mathematics}
+%\DeclareRobustCommand\Department[1]{%
+%   \renewcommand\@dept{#1}
+%}
+\newcommand\@kps{Dr. Raden Sulaiman, M.Si.}
+\DeclareRobustCommand\KPS[1]{%
+	\renewcommand\@kps{#1}
 }
-\newcommand\@dept{Mathematics}
-\DeclareRobustCommand\Department[1]{%
-   \renewcommand\@dept{#1}
-}
-\newcommand\@kadep{Dr. Raden Sulaiman, M.Si.}
-\DeclareRobustCommand\Kadep[1]{%
-	\renewcommand\@kadep{#1}
-}
-\newcommand\@NIPkadep{196712031993021001}
-\DeclareRobustCommand\NIPKadep[1]{%
-	\renewcommand\@NIPkadep{#1}
+\newcommand\@NIPkps{196712031993021001}
+\DeclareRobustCommand\NIPkps[1]{%
+	\renewcommand\@NIPkps{#1}
 }
 \newcommand\@dekan{Prof. Dr. Wasis, M.Si.}
 \DeclareRobustCommand\Dekan[1]{%
@@ -122,7 +123,7 @@
     \enlargethispage{1cm}
     \begin{center}
     \noindent
-    {\Large\textbf{\MakeUppercase{\@judul}}}\\[5ex]
+    {\Large\textbf{\MakeUppercase{\@judul}}}\\[7ex]
     
     \textit{{\large SKRIPSI}}\\[12ex]
     
@@ -130,11 +131,11 @@
     
     Oleh\\
     \MakeUppercase{\@nama}\\
-    \textbf{NIM \@NIM}\\[13ex]
+    \textbf{NIM \@NIM}\\[15ex]
     
     \textbf{\textit{UNIVERSITAS NEGERI SURABAYA}}\\
     FAKULTAS~\MakeUppercase{\@fak}\\
-    DEPARTEMEN~\MakeUppercase{\@dep}\\
+    %DEPARTEMEN~\MakeUppercase{\@dep}\\
     \textbf{\textit{PROGRAM STUDI~\MakeUppercase{\@prodi}}}\\
     \@thn
     \end{center}
@@ -149,17 +150,17 @@
 		\noindent
 		{\Large\textbf{\MakeUppercase{\@judul}}}\\[10ex]
 		
-		\textit{{\large SKRIPSI}}\\[12ex]
+		\textit{{\large SKRIPSI}}\\[14ex]
 		
-		Diajukan kepada Universitas Negeri Surabaya untuk Memenuhi Persyaratan Penyelesaian Program Sarjana Matematika\\[17ex]
+		Diajukan kepada Universitas Negeri Surabaya untuk Memenuhi Persyaratan Penyelesaian Program Sarjana Matematika\\[20ex]
 		
 		Oleh\\
 		\MakeUppercase{\@nama}\\
-		\textbf{NIM \@NIM}\\[17ex]
+		\textbf{NIM \@NIM}\\[22ex]
 		
 		\textbf{\textit{UNIVERSITAS NEGERI SURABAYA}}\\
 		FAKULTAS~\MakeUppercase{\@fak}\\
-		DEPARTEMEN~\MakeUppercase{\@dep}\\
+		%DEPARTEMEN~\MakeUppercase{\@dep}\\
 		\textbf{\textit{PROGRAM STUDI~\MakeUppercase{\@prodi}}}\\
 		\@thn
 	\end{center}
@@ -221,20 +222,20 @@
 	\begin{tabular}{cp{5cm}p{1.5cm}p{2cm}}    
 		& \multicolumn{1}{c}{Dewan Penguji} & \multicolumn{1}{c}{Tanda} & \multicolumn{1}{c}{Tanggal Selesai}\\
 		& & \multicolumn{1}{c}{Tangan} & \multicolumn{1}{c}{Revisi}\\[2ex]
-		1 & \@pbbsatu & & \\
-		& NIP.~\@NIPpbbsatu & \multicolumn{1}{c}{\dotfill} & \multicolumn{1}{c}{\dotfill} \\[5ex]
-		2 & \@pujsatu & & \\
+		1 & \@pujsatu & & \\
 		& NIP.~\@NIPpujsatu & \multicolumn{1}{c}{\dotfill} & \multicolumn{1}{c}{\dotfill} \\[5ex]
-		3 & \@pujdua & & \\
+		2 & \@pujdua & & \\
 		& NIP.~\@NIPpujdua & \multicolumn{1}{c}{\dotfill} & \multicolumn{1}{c}{\dotfill} \\[5ex]
+		3 & \@pbbsatu & & \\
+		& NIP.~\@NIPpbbsatu & \multicolumn{1}{c}{\dotfill} & \multicolumn{1}{c}{\dotfill} \\[5ex]
 	\end{tabular}
 
 	\noindent
 	\begin{tabular}{p{5cm}p{5cm}}
 		Mengesahkan, & Mengetahui,\\
-		Dekan Fakultas \@fak~\@univ & Ketua Departemen \@dep~\@univ\\[15ex]
-		\@dekan & \@kadep\\
-		NIP. \@NIPdekan & NIP. \@NIPkadep
+		Dekan Fakultas \@fak~\@univ & Koordinator Program Studi \@prodi~\@univ\\[15ex]
+		\@dekan & \@kps\\
+		NIP. \@NIPdekan & NIP. \@NIPkps
 	\end{tabular}
     \addcontentsline{toc}{chapter}{HALAMAN PENGESAHAN}
 }
@@ -250,7 +251,7 @@
 	\begin{tabular}{@{}lcp{5.2cm}}
 		Skripsi oleh & : & \@nama\\
 		NIM & : &  \@NIM\\
-		Program Studi/Departemen & : & \@prodi/\@dep\\
+		Program Studi & : & \@prodi\\
 		Judul Skripsi & : & \@judul
 	\end{tabular}\\[2ex]
 	menyatakan dengan sesungguhnya bahwa:
@@ -297,7 +298,7 @@
         Nama &:& \@nama\\
         NIM &:& \@NIM\\
         Program Studi &:& \@prodi\\
-        Departemen &:& \@dep\\
+        %Departemen &:& \@dep\\
         Fakultas &:& \@fak\\
         Nama Lembaga &:& \@univ\\
         \ifthenelse{\equal{\@pbbtiga}{}\OR\equal{\@pbbtiga}{ }}
@@ -323,7 +324,7 @@
         Name &:& \@nama\\
         Student ID &:& \@NIM\\
         Programme &:& \@prodiEng\\
-        Departement &:& \@dept\\
+        %Departement &:& \@dept\\
         Faculty &:& \@fac\\
         Insititution &:& \@uni\\
         \ifthenelse{\equal{\@pbbtiga}{}\OR\equal{\@pbbtiga}{ }}
@@ -372,7 +373,7 @@
     \pagestyle{plain}
 }
 
-\setlength{\parindent}{.7cm}
+\setlength{\parindent}{2em}
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
                     \thispagestyle{plain}%
                     \global\@topnum\z@
@@ -440,6 +441,7 @@
                                     {\normalfont\normalsize\bfseries}}
 \renewcommand*\thechapter{\@Roman\c@chapter}
 \renewcommand*\thesection{\@Alph\c@section.}
+\renewcommand*\thesubsection{\@arabic\c@subsection.}
 
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -496,6 +498,17 @@
 	\bibliography{#1}
 }
 
+\newcommand{\Glosarium}{%----------------------
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{GLOSARIUM}
+	\begin{center}
+		\large \textbf{GLOSARIUM}
+	\end{center}
+	\vskip 3ex
+	\glsaddall
+	\printglossaries
+}
+
 %%%%---------------------------------
 \newcommand\BukaLampiran{%
     \cleardoublepage
@@ -522,13 +535,8 @@
     \vskip 20\p@\par
 }
 
-\newenvironment{tenumerate}{
-	\begin{enumerate}
-		\setlength{\partopsep}{0pt}
-		\setlength{\topsep}{0pt}
-		\setlength{\itemsep}{1pt}
-		\setlength{\parskip}{0pt}
-	}{\end{enumerate}}
+\newlist{tenumerate}{enumerate}{1}
+\setlist[tenumerate]{labelindent=2em,leftmargin=*,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\arabic*.}
 
 %-----------------------------------
 \newcommand\biodata[1]{%-----------
@@ -549,6 +557,7 @@
 \renewcommand\appendixname{Lampiran}
 \renewcommand\proofname{Bukti}
 \renewcommand\qedsymbol{$\blacksquare$}
+\addto{\captionsbahasa}{\renewcommand{\bibname}{DAFTAR PUSTAKA}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -568,7 +577,7 @@
 	frame=single,	                   % adds a frame around the code
 	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
 	keywordstyle=\color{blue},       % keyword style
-	language=Python,                 % the language of the code
+	%language=Python,                 % the language of the code
 	morekeywords={*,...},            % if you want to add more keywords to the set
 	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
 	numbersep=5pt,                   % how far the line-numbers are from the code
