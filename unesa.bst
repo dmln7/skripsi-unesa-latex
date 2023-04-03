@@ -26,7 +26,7 @@
 % In natbib.sty, it is possible to define the type of enclosures that is
 % really wanted (brackets or parentheses), but in either case, there must
 % be parentheses in the label.
-% The \cite command functions as follows:
+\textit{% The \cite command functions as follows:
 %   \citet{key} ==>>                Jones et al. (1990)
 %   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
 %   \citep{key} ==>>                (Jones et al., 1990)
@@ -36,36 +36,37 @@
 %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
 %   \citeauthor{key} ==>>           Jones et al.
 %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
-%   \citeyear{key} ==>>             1990
+%   \citeyear{key} ==>>             1990}
 %---------------------------------------------------------------------
 
 ENTRY
-{ address
-author
-booktitle
-chapter
-edition
-editor
-howpublished
-institution
-journal
-key
-month
-note
-number
-organization
-pages
-publisher
-school
-series
-title
-type
-url
-volume
-year
+{	address
+	author
+	booktitle
+	chapter
+	edition
+	editor
+	howpublished
+	institution
+	journal
+	key
+	month
+	note
+	number
+	organization
+	pages
+	publisher
+	school
+	series
+	title
+	type
+	url
+	volume
+	year
 }
+
 {}
-{ label extra.label sort.label short.list }
+{label extra.label sort.label short.list }
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
 FUNCTION {init.state.consts}
 { #0 'before.all :=
@@ -73,7 +74,9 @@ FUNCTION {init.state.consts}
 #2 'after.sentence :=
 #3 'after.block :=
 }
+
 STRINGS { s t}
+
 FUNCTION {output.nonnull}
 { 's :=
 output.state mid.sentence =
@@ -94,12 +97,14 @@ mid.sentence 'output.state :=
 if$
 s
 }
+
 FUNCTION {output}
 { duplicate$ empty$
 'pop$
 'output.nonnull
 if$
 }
+
 FUNCTION {output.check}
 { 't :=
 duplicate$ empty$
@@ -120,6 +125,7 @@ FUNCTION {new.block}
 { after.block 'output.state := }
 if$
 }
+
 FUNCTION {new.sentence}
 { output.state after.block =
 'skip$
@@ -130,6 +136,7 @@ if$
 }
 if$
 }
+
 FUNCTION {add.blank}
 {  " " * before.all 'output.state :=
 }
@@ -144,16 +151,19 @@ FUNCTION {not}
 { #1 }
 if$
 }
+
 FUNCTION {and}
 {   'skip$
 { pop$ #0 }
 if$
 }
+
 FUNCTION {or}
 {   { pop$ #1 }
 'skip$
 if$
 }
+
 FUNCTION {new.block.checkb}
 { empty$
 swap$ empty$
@@ -162,18 +172,21 @@ and
 'new.block
 if$
 }
+
 FUNCTION {field.or.null}
 { duplicate$ empty$
 { pop$ "" }
 'skip$
 if$
 }
+
 FUNCTION {emphasize}
 { duplicate$ empty$
 { pop$ "" }
 { "{\em " swap$ * "\/}" * }
 if$
 }
+
 FUNCTION {tie.or.space.prefix}
 { duplicate$ text.length$ #3 <
 { "~" }
@@ -191,10 +204,20 @@ FUNCTION {space.word}
 % Each function has a name bbl.xxx where xxx is the English word.
 % The language selected here is ENGLISH
 FUNCTION {bbl.and}
-{ "and"}
+{
+language "id" =
+{ "dan" }
+{ "and" }
+if$
+}
 
 FUNCTION {bbl.etal}
+{
+language "id" =
+{ "dkk." }
 { "et~al." }
+if$
+}
 
 FUNCTION {bbl.editors}
 { "eds." }
@@ -203,7 +226,12 @@ FUNCTION {bbl.editor}
 { "ed." }
 
 FUNCTION {bbl.edby}
+{
+language "id" =
+{ "disunting oleh" }
 { "edited by" }
+if$
+}
 
 FUNCTION {bbl.edition}
 { "ed." }
@@ -221,25 +249,55 @@ FUNCTION {bbl.nr}
 { "no." }
 
 FUNCTION {bbl.in}
+{
+language "id" =
+{ "dalam" }
 { "in" }
+if$
+}
 
 FUNCTION {bbl.pages}
+{
+language "id" =
+{ "hal." }
 { "pp." }
+if$
+}
 
 FUNCTION {bbl.page}
+{
+language "id" =
+{ "hal." }
 { "p." }
+if$
+}
 
 FUNCTION {bbl.chapter}
+{
+language "id" =
+{ "bab" }
 { "chap." }
+if$
+}
 
 FUNCTION {bbl.techrep}
 { "Tech. Rep." }
 
 FUNCTION {bbl.mthesis}
+{
+language "id" =
+{ "Tesis" }
 { "Master's thesis" }
+if$
+}
 
 FUNCTION {bbl.phdthesis}
+{
+language "id" =
+{ "Disertasi" }
 { "Ph.D. thesis" }
+if$
+}
 
 MACRO {jan} {"Jan."}
 
@@ -305,6 +363,7 @@ MACRO {toois} {"ACM Transactions on Office Information Systems"}
 MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
 
 MACRO {tcs} {"Theoretical Computer Science"}
+
 FUNCTION {bibinfo.check}
 { swap$
 duplicate$ missing$
@@ -363,7 +422,7 @@ s num.names$ 'numnames :=
 numnames 'namesleft :=
 { namesleft #0 > }
 { s nameptr
-"{vv~}{ll}{, f.}{, jj}"
+"{vv~}{ll}{, f.}{, jj.}"
 format.name$
 bibinfo bibinfo.check
 't :=
@@ -379,7 +438,7 @@ s nameptr "{ll}" format.name$ duplicate$ "others" =
 if$
 t "others" =
 {
-" " * bbl.etal *
+" " * et~al.*
 }
 {
 "\&"
@@ -497,6 +556,7 @@ duplicate$ empty$ 'skip$
 if$
 "title" bibinfo.check
 }
+
 FUNCTION {format.full.names}
 {'s :=
 "" 't :=
@@ -923,6 +983,7 @@ format.note output
 fin.entry
 write.url
 }
+
 FUNCTION {book}
 { output.bibitem
 author empty$
@@ -1121,6 +1182,7 @@ format.note output
 fin.entry
 write.url
 }
+
 FUNCTION {phdthesis}
 { output.bibitem
 format.authors "author" output.check
@@ -1155,6 +1217,42 @@ publisher empty$
 format.publisher.address output
 }
 if$
+new.block
+format.note output
+fin.entry
+write.url
+}
+
+FUNCTION {statute}
+{ output.bibitem
+author empty$
+{ format.editors "author and editor" output.check
+editor format.key output
+add.blank
+}
+{ format.authors output.nonnull
+crossref missing$
+{ "author and editor" editor either.or.check }
+'skip$
+if$
+}
+if$
+format.date "year" output.check
+date.block
+format.btitle "title" output.check
+crossref missing$
+{ format.bvolume output
+new.block
+format.number.series output
+new.sentence
+format.publisher.address output
+}
+{
+new.block
+format.book.crossref output.nonnull
+}
+if$
+format.edition output
 new.block
 format.note output
 fin.entry
@@ -1482,6 +1580,3 @@ FUNCTION {end.bib}
 "\end{thebibliography}" write$ newline$
 }
 EXECUTE {end.bib}
-%% End of customized bst file
-%%
-%% End of file `apa-ben.bst'.
