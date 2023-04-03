@@ -1,11 +1,12 @@
-\ProvidesClass{SkripsiUnesa}[07/02/2023 v1.3]
+\ProvidesClass{SkripsiUnesa}[03/04/2023 v2.0]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[a5paper,10pt,twoside,openright]{book}
 \RequirePackage[hmargin={2.5cm,2cm},vmargin={2.5cm,2cm}]{geometry}
-\RequirePackage{graphicx,sectsty,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,glossaries,listings,wrapfig}
+\RequirePackage{graphicx,sectsty,setspace,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,listings,wrapfig,imakeidx}
+\RequirePackage[font=small,labelfont=bf]{caption}
+\RequirePackage[automake,toc]{glossaries}
 \RequirePackage[bahasa]{babel}
 \usetikzlibrary{shapes.geometric, arrows}
-\loadglsentries{Istilah.tex}
 %
 \newcommand{\@judul}{Judul Skripsi}
 \DeclareRobustCommand{\Judul}[1]{%
@@ -134,7 +135,7 @@
     \textbf{NIM \@NIM}\\[15ex]
     
     \textbf{\textit{UNIVERSITAS NEGERI SURABAYA}}\\
-    FAKULTAS~\MakeUppercase{\@fak}\\
+    {\small FAKULTAS~\MakeUppercase{\@fak}}\\
     %DEPARTEMEN~\MakeUppercase{\@dep}\\
     \textbf{\textit{PROGRAM STUDI~\MakeUppercase{\@prodi}}}\\
     \@thn
@@ -159,7 +160,7 @@
 		\textbf{NIM \@NIM}\\[22ex]
 		
 		\textbf{\textit{UNIVERSITAS NEGERI SURABAYA}}\\
-		FAKULTAS~\MakeUppercase{\@fak}\\
+		{\small FAKULTAS~\MakeUppercase{\@fak}}\\
 		%DEPARTEMEN~\MakeUppercase{\@dep}\\
 		\textbf{\textit{PROGRAM STUDI~\MakeUppercase{\@prodi}}}\\
 		\@thn
@@ -180,9 +181,9 @@
 \newcommand\HalamanPersetujuan{
 	\cleardoublepage
 	\enlargethispage{1.5cm}
-	\thispagestyle{empty}
+	\thispagestyle{plain}
 	\noindent
-	\centerline{\large\bfseries{\MakeUppercase{Halaman Persetujuan}}}\\[7ex]
+	\chapter*{Halaman Persetujuan}
 	\noindent
 	\begin{tabular}{@{}lcp{8cm}}
 		Skripsi oleh & : & \@nama\\
@@ -206,8 +207,9 @@
 \newcommand\HalamanPengesahan{
   \cleardoublepage
   \enlargethispage{1.5cm}
-  \thispagestyle{empty}
+  \thispagestyle{plain}
   \noindent
+  %\chapter*{Halaman Pengesahan}
   \centerline{\large\bfseries{\MakeUppercase{Halaman Pengesahan}}}\\[7ex]
   \noindent
   \begin{tabular}{@{}lcp{8cm}}
@@ -233,7 +235,7 @@
 	\noindent
 	\begin{tabular}{p{5cm}p{5cm}}
 		Mengesahkan, & Mengetahui,\\
-		Dekan Fakultas \@fak~\@univ & Koordinator Program Studi \@prodi~\@univ\\[15ex]
+		Dekan Fakultas \@fak~\@univ & Koordinator Program Studi \@prodi\\[16ex]
 		\@dekan & \@kps\\
 		NIP. \@NIPdekan & NIP. \@NIPkps
 	\end{tabular}
@@ -243,9 +245,9 @@
 \newcommand\Orisinalitas{
 	\cleardoublepage
 	\enlargethispage{1.5cm}
-	\thispagestyle{empty}
+	\thispagestyle{plain}
 	\noindent
-	\centerline{\large\bfseries{\MakeUppercase{Surat Pernyataan Keorisinilan Skripsi}}}\\[7ex]
+	\chapter*{Surat Pernyataan Keorisinilan Skripsi}
 	\noindent
 	Saya yang bertandatangan di bawah ini:\\
 	\begin{tabular}{@{}lcp{5.2cm}}
@@ -255,18 +257,16 @@
 		Judul Skripsi & : & \@judul
 	\end{tabular}\\[2ex]
 	menyatakan dengan sesungguhnya bahwa:
-	\begin{tenumerate}
+	\begin{daftar}[leftmargin=0.5cm]
 		\item produk dari penelitian/skripsi yang telah saya kembangkan adalah benar merupakan hasil karya saya bersama pembimbing dan belum diajukan hak cipta/paten oleh saya pribadi atau orang lain ke instansi/lembaga manapun;
 		\item menyerahkan sepenuhnya produk penelitian saya ke Program Studi~\@prodi~sebagai produk milik program Studi;
 		\item tidak menuntut/meminta ganti rugi dalam bentuk apapun atau segala sesuatu yang dilakukan oleh Program Studi~\@prodi~terhadap produk penelitian/skripsi saya ini;
 		\item apabila ternyata dikemudian hari produk penelitian/skripsi ini merupakan hasil plagiat atau penjiplakan terhadap karya orang lain, maka saya bersedia menerima sanksi berdasarkan aturan yang berlaku di Negera Kesatuan Republik Indonesia.
-	\end{tenumerate}
+	\end{daftar}
 	Demikianlah surat pernyataan ini saya buat dengan sesungguhnya, untuk dapat dipergunakan sebagaimana mestinya.\\[3ex]
 	\begin{tabular}{p{5cm}l}
 		& Surabaya, \@tglsidang\\
-		& Yang membuat pernyataan,\\[3ex]
-		& Meterai\\
-		& (Rp. 10.000)\\[6ex]
+		& Yang membuat pernyataan,\\[12ex]
 		& \@nama\\
 		& NIM. \@NIM
 	\end{tabular}
@@ -341,7 +341,7 @@
 }
 \newcommand{\KataPengantar}{%-----------------
     \cleardoublepage
-    \centerline{\large\bfseries KATA PENGANTAR}
+    \chapter*{Prakata}
     \addcontentsline{toc}{chapter}{KATA PENGANTAR}
     \vspace*{40pt}
 }
@@ -363,7 +363,7 @@
 }
 \newcommand{\DaftarSimbol}{%----------------------
 	\cleardoublepage
-	\centerline{\large\bfseries{\MakeUppercase{Daftar Simbol}}}
+	\chapter*{Daftar Simbol}
 	\addcontentsline{toc}{chapter}{DAFTAR SIMBOL}
 }
 \newcommand\Inti{%--------------------
@@ -500,12 +500,6 @@
 
 \newcommand{\Glosarium}{%----------------------
 	\cleardoublepage
-	\addcontentsline{toc}{chapter}{GLOSARIUM}
-	\begin{center}
-		\large \textbf{GLOSARIUM}
-	\end{center}
-	\vskip 3ex
-	\glsaddall
 	\printglossaries
 }
 
@@ -535,15 +529,17 @@
     \vskip 20\p@\par
 }
 
-\newlist{tenumerate}{enumerate}{1}
-\setlist[tenumerate]{labelindent=2em,leftmargin=*,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\arabic*.}
-
 %-----------------------------------
 \newcommand\biodata[1]{%-----------
   \begin{wrapfigure}{l}{3cm}
   	{\includegraphics[width=3cm,height=4cm]{#1}}
   \end{wrapfigure}
 }
+
+\newlist{daftar}{enumerate}{1}
+\setlist[daftar]{labelindent=2em,leftmargin=*,listparindent=2em,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\arabic*.}
+\newlist{subdaftar}{enumerate}{1}
+\setlist[subdaftar]{leftmargin=*,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\alph*.}
 
 %%%------------- PENYESUAIAN ISTILAH ---------------------------
 \renewcommand\contentsname{DAFTAR ISI}
@@ -558,6 +554,9 @@
 \renewcommand\proofname{Bukti}
 \renewcommand\qedsymbol{$\blacksquare$}
 \addto{\captionsbahasa}{\renewcommand{\bibname}{DAFTAR PUSTAKA}}
+\addto\captionsbahasa{\renewcommand{\bibname}{DAFTAR PUSTAKA}}
+\addto\captionsbahasa{\renewcommand{\glossaryname}{GLOSARIUM}}
+\addto\captionsbahasa{\renewcommand{\indexname}{INDEKS}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
