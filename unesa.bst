@@ -203,21 +203,12 @@ FUNCTION {space.word}
 % Here are the language-specific definitions for explicit words.
 % Each function has a name bbl.xxx where xxx is the English word.
 % The language selected here is ENGLISH
+
 FUNCTION {bbl.and}
-{
-language "id" =
 { "dan" }
-{ "and" }
-if$
-}
 
 FUNCTION {bbl.etal}
-{
-language "id" =
 { "dkk." }
-{ "et~al." }
-if$
-}
 
 FUNCTION {bbl.editors}
 { "eds." }
@@ -226,12 +217,7 @@ FUNCTION {bbl.editor}
 { "ed." }
 
 FUNCTION {bbl.edby}
-{
-language "id" =
 { "disunting oleh" }
-{ "edited by" }
-if$
-}
 
 FUNCTION {bbl.edition}
 { "ed." }
@@ -249,55 +235,25 @@ FUNCTION {bbl.nr}
 { "no." }
 
 FUNCTION {bbl.in}
-{
-language "id" =
 { "dalam" }
-{ "in" }
-if$
-}
 
 FUNCTION {bbl.pages}
-{
-language "id" =
 { "hal." }
-{ "pp." }
-if$
-}
 
 FUNCTION {bbl.page}
-{
-language "id" =
 { "hal." }
-{ "p." }
-if$
-}
 
 FUNCTION {bbl.chapter}
-{
-language "id" =
-{ "bab" }
 { "chap." }
-if$
-}
 
 FUNCTION {bbl.techrep}
 { "Tech. Rep." }
 
 FUNCTION {bbl.mthesis}
-{
-language "id" =
 { "Tesis" }
-{ "Master's thesis" }
-if$
-}
 
 FUNCTION {bbl.phdthesis}
-{
-language "id" =
 { "Disertasi" }
-{ "Ph.D. thesis" }
-if$
-}
 
 MACRO {jan} {"Jan."}
 
@@ -441,7 +397,7 @@ t "others" =
 " " * et~al.*
 }
 {
-"\&"
+"dan"
 space.word * t *
 }
 if$
@@ -488,7 +444,7 @@ t "others" =
 " " * bbl.etal *
 }
 {
-"\&"
+"dan"
 space.word * t *
 }
 if$
@@ -585,7 +541,7 @@ numnames #2 >
 { "," * }
 'skip$
 if$
-"\&"
+"dan"
 space.word * t *
 }
 if$
@@ -1320,7 +1276,7 @@ s num.names$ duplicate$
 {
 " " * bbl.etal *
 }
-{ " \& " * s #2 "{vv~}{ll}" format.name$
+{ " dan " * s #2 "{vv~}{ll}" format.name$
 * }
 if$
 }
