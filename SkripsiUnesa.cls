@@ -1,8 +1,8 @@
-\ProvidesClass{SkripsiUnesa}[03/04/2023 v2.0]
+\ProvidesClass{SkripsiUnesa}[21/06/2023 v2.1]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[a5paper,10pt,twoside,openright]{book}
 \RequirePackage[hmargin={2.5cm,2cm},vmargin={2.5cm,2cm}]{geometry}
-\RequirePackage{graphicx,sectsty,setspace,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,listings,wrapfig,imakeidx}
+\RequirePackage{graphicx,sectsty,setspace,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,listings,wrapfig,imakeidx,}
 \RequirePackage[font=small,labelfont=bf]{caption}
 \RequirePackage[automake,toc]{glossaries}
 \RequirePackage[bahasa]{babel}
@@ -106,6 +106,7 @@
    \renewcommand{\@pujdua}{#2}%
    \renewcommand{\@pujtiga}{#3}%
 }
+
 \newcommand\@NIPpujsatu{12345678 123456 1 123}
 \newcommand\@NIPpujdua{12345678 123456 1 123}
 \newcommand\@NIPpujtiga{12345678 123456 1 123}
@@ -114,6 +115,22 @@
    \renewcommand{\@NIPpujdua}{#2}%
    \renewcommand{\@NIPpujtiga}{#3}%
 }
+
+\newcommand\@ahli{Nama Ahli}
+\DeclareRobustCommand\Ahli[1]{%
+	\renewcommand\@ahli{#1}
+}
+
+\newcommand\@NIPahli{Nama Ahli}
+\DeclareRobustCommand\NIPahli[1]{%
+	\renewcommand\@NIPahli{#1}
+}
+
+\newcommand\@tgluji{6 Februari 2023}
+\DeclareRobustCommand\TanggalUji[1]{%
+	\renewcommand\@tgluji{#1}
+}
+
 \newcommand\Awal{%
     \frontmatter
     \pagestyle{plain}
@@ -250,7 +267,7 @@
 	\chapter*{Surat Pernyataan Keorisinilan Skripsi}
 	\noindent
 	Saya yang bertandatangan di bawah ini:\\
-	\begin{tabular}{@{}lcp{5.2cm}}
+	\begin{tabular}{@{}lcp{7cm}}
 		Skripsi oleh & : & \@nama\\
 		NIM & : &  \@NIM\\
 		Program Studi & : & \@prodi\\
@@ -266,7 +283,8 @@
 	Demikianlah surat pernyataan ini saya buat dengan sesungguhnya, untuk dapat dipergunakan sebagaimana mestinya.\\[3ex]
 	\begin{tabular}{p{5cm}l}
 		& Surabaya, \@tglsidang\\
-		& Yang membuat pernyataan,\\[12ex]
+		& Yang membuat pernyataan,\\[3ex]
+		& (meterai Rp.10.000)\\[4ex]
 		& \@nama\\
 		& NIM. \@NIM
 	\end{tabular}
@@ -374,6 +392,7 @@
 }
 
 \setlength{\parindent}{2em}
+\setcounter{secnumdepth}{3}
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
                     \thispagestyle{plain}%
                     \global\@topnum\z@
@@ -432,9 +451,9 @@
                                      {.01ex \@plus .2ex}%
                                      {\normalfont\normalsize\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-.25ex\@plus -1ex \@minus -.2ex}%
-                                     {.01ex \@plus.2ex}%
-                                     {\normalfont\normalsize}}
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries\leftskip 2ex}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {.25ex \@plus1ex \@minus.2ex}%
                                     {-1.5em}%
@@ -442,6 +461,7 @@
 \renewcommand*\thechapter{\@Roman\c@chapter}
 \renewcommand*\thesection{\@Alph\c@section.}
 \renewcommand*\thesubsection{\@arabic\c@subsection.}
+\renewcommand*\thesubsubsection{\@alph\c@subsubsection.}
 
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -450,6 +470,7 @@
 \newtheorem{axiom}[theorem]{Aksioma}
 \newtheorem{example}[theorem]{Contoh}
 \newtheorem{definition}[theorem]{Definisi}
+
 %%%-------------setting daftar isi/tabel/gambar------------------
 \renewcommand\@dotsep{2}
 \renewcommand*\l@chapter[2]{%
@@ -591,7 +612,32 @@
 	%title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+\newcommand\UjiAhli{
+	\enlargethispage{1.5cm}
+	\thispagestyle{plain}
+	\noindent
+	Yang bertandatangan di bawah ini:\\
+	\begin{tabular}{@{}lcp{7cm}}
+		Nama & : & \@ahli\\
+		NIP & : & \@NIPahli\\
+		Jabatan & : &  Dosen Program Studi~\@prodi\\
+	\end{tabular}\\[2ex]
+	menerangkan bahwa mahasiswa yang bernama:
+	\begin{tabular}{@{}lcp{7cm}}
+		Nama & : & \@nama\\
+		NIM & : & \@NIM\\
+		Program Studi & : &  \@prodi\\
+	\end{tabular}\\[2ex]
+	telah melakukan uji pakar instrumen penelitian yang berupa kuesioner pada tanggal~\@tgluji. Demikianlah surat keterangan ini untuk dapat dipergunakan sebagaimana mestinya.\\[5ex]
+	\begin{tabular}{p{5cm}l}
+		& Surabaya, \@tgluji\\
+		& Dosen/pakar\\[12ex]
+		& \@ahli\\
+		& NIP. \@NIPahli
+	\end{tabular}
+}
+
 \lefthyphenmin=5
 \righthyphenmin=5
 \sloppy
-\pagestyle{myheadings}
+%\pagestyle{myheadings}
