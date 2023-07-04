@@ -1,13 +1,13 @@
-\ProvidesClass{SkripsiUnesa}[21/06/2023 v2.1]
+\ProvidesClass{SkripsiUnesa}[04/07/2023 v2.2]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[a5paper,10pt,twoside,openright]{book}
 \RequirePackage[hmargin={2.5cm,2cm},vmargin={2.5cm,2cm}]{geometry}
-\RequirePackage{graphicx,sectsty,setspace,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,listings,wrapfig,imakeidx,}
+\RequirePackage{graphicx,sectsty,setspace,amssymb,amsmath,amsthm,amsfonts,pxfonts,enumitem,indentfirst,tabularx,ifthen,lscape,hyperref,array,mathtools,subcaption,multirow,natbib,tikz,actuarialsymbol,actuarialangle,listings,wrapfig,imakeidx,fancyhdr,pgfplots}
 \RequirePackage[font=small,labelfont=bf]{caption}
 \RequirePackage[automake,toc]{glossaries}
 \RequirePackage[bahasa]{babel}
-\usetikzlibrary{shapes.geometric, arrows}
-%
+\usetikzlibrary{shapes, arrows, shapes.multipart,positioning}
+
 \newcommand{\@judul}{Judul Skripsi}
 \DeclareRobustCommand{\Judul}[1]{%
     \renewcommand{\@judul}{#1}%
@@ -135,6 +135,7 @@
     \frontmatter
     \pagestyle{plain}
 }
+
 \newcommand\HalamanJudul{%
     \cleardoublepage
     \thispagestyle{empty}
@@ -151,10 +152,10 @@
     \MakeUppercase{\@nama}\\
     \textbf{NIM \@NIM}\\[15ex]
     
-    \textbf{\textit{UNIVERSITAS NEGERI SURABAYA}}\\
+    UNIVERSITAS NEGERI SURABAYA\\
     {\small FAKULTAS~\MakeUppercase{\@fak}}\\
     %DEPARTEMEN~\MakeUppercase{\@dep}\\
-    \textbf{\textit{PROGRAM STUDI~\MakeUppercase{\@prodi}}}\\
+    PROGRAM STUDI~\MakeUppercase{\@prodi}\\
     \@thn
     \end{center}
     \addcontentsline{toc}{chapter}{HALAMAN SAMPUL}
@@ -261,9 +262,8 @@
 
 \newcommand\Orisinalitas{
 	\cleardoublepage
-	\enlargethispage{1.5cm}
+	%\enlargethispage{1.5cm}
 	\thispagestyle{plain}
-	\noindent
 	\chapter*{Surat Pernyataan Keorisinilan Skripsi}
 	\noindent
 	Saya yang bertandatangan di bawah ini:\\
@@ -280,11 +280,12 @@
 		\item tidak menuntut/meminta ganti rugi dalam bentuk apapun atau segala sesuatu yang dilakukan oleh Program Studi~\@prodi~terhadap produk penelitian/skripsi saya ini;
 		\item apabila ternyata dikemudian hari produk penelitian/skripsi ini merupakan hasil plagiat atau penjiplakan terhadap karya orang lain, maka saya bersedia menerima sanksi berdasarkan aturan yang berlaku di Negera Kesatuan Republik Indonesia.
 	\end{daftar}
+	
 	Demikianlah surat pernyataan ini saya buat dengan sesungguhnya, untuk dapat dipergunakan sebagaimana mestinya.\\[3ex]
 	\begin{tabular}{p{5cm}l}
 		& Surabaya, \@tglsidang\\
 		& Yang membuat pernyataan,\\[3ex]
-		& (meterai Rp.10.000)\\[4ex]
+		%& (meterai Rp.10.000)\\[4ex]
 		& \@nama\\
 		& NIM. \@NIM
 	\end{tabular}
@@ -307,8 +308,9 @@
 }
 \newenvironment*{Abstrak}{%-------------------------------
   \cleardoublepage
+  \chapter*{Abstrak}
+  \vspace*{-5ex}
   \begin{center}%
-  	{\large\bfseries{\MakeUppercase{ABSTRAK}}}\\[3ex]
     {\large\bfseries{\MakeUppercase{\@judul}}}
     \par \vskip 3ex%
     \par%
@@ -333,8 +335,9 @@
 }
 \newenvironment*{Abstract}{%-------------------------------
   \cleardoublepage
+  \chapter*{Abstract}
+  \vspace*{-5ex}
   \begin{center}%
-  	{\large\bfseries{\MakeUppercase{ABSTRACT}}}\\[3ex]
     {\large\bfseries{\MakeUppercase{\@juduleng}}}
     \par \vskip 3ex%
     \par%
@@ -357,10 +360,10 @@
     \par \vskip 2ex%
   \par}{\normalfont\normalsize
 }
-\newcommand{\KataPengantar}{%-----------------
+\newcommand{\Prakata}{%-----------------
     \cleardoublepage
     \chapter*{Prakata}
-    \addcontentsline{toc}{chapter}{KATA PENGANTAR}
+    \addcontentsline{toc}{chapter}{PRAKATA}
     \vspace*{40pt}
 }
 \newcommand{\DaftarIsi}{%---------------------
@@ -420,7 +423,7 @@
                       \@afterheading
                     \fi}
 \gdef\@makechapterhead#1{%
-  \vspace*{5\p@}%
+  \vspace*{0.5cm}%
   {\parindent \z@ \centering\normalfont
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
@@ -429,13 +432,13 @@
       \fi
     \fi
     \large\bfseries\MakeUppercase{#1}\par\nobreak
-    \vskip 40\p@
+    \vskip 35\p@
   }}
 \gdef\@schapter#1{\@makeschapterhead{#1}%
                  \@afterheading
                  }
 \gdef\@makeschapterhead#1{%
-  \vspace*{5\p@}%
+  \vspace*{0.5cm}%
   {\parindent \z@ \centering
     \normalfont
     \interlinepenalty\@M
@@ -445,23 +448,25 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-1.5ex \@plus -1ex \@minus -.2ex}%
                                    {.01ex \@plus.2ex}%
-                                   {\normalfont\normalsize\bfseries}}
+                                   {\normalfont\normalsize\bfseries\@afterheading}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-1.5ex\@plus -1ex \@minus -.2ex}%
-                                     {.01ex \@plus .2ex}%
-                                     {\normalfont\normalsize\bfseries}}
+									 {-1.5ex\@plus -1ex \@minus -.2ex}%
+									 {.2ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries\@afterheading}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                     {1.5ex \@plus .2ex}%
-                                     {\normalfont\normalsize\bfseries\leftskip 2ex}}
+							{-1.5ex\@plus -1ex \@minus -.2ex}%
+							{.2ex \@plus .2ex}%
+							{\normalfont\normalsize\bfseries\@afterheading}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-                                    {.25ex \@plus1ex \@minus.2ex}%
-                                    {-1.5em}%
-                                    {\normalfont\normalsize\bfseries}}
+							{\parindent}
+							{0.635cm \@plus2.54cm \@minus.2ex}%
+							{-\dimexpr\fontdimen2\font-\fontdimen4\font}%
+							{\normalfont\normalsize\bfseries\@afterheading}}
+
 \renewcommand*\thechapter{\@Roman\c@chapter}
-\renewcommand*\thesection{\@Alph\c@section.}
-\renewcommand*\thesubsection{\@arabic\c@subsection.}
-\renewcommand*\thesubsubsection{\@alph\c@subsubsection.}
+\renewcommand*\thesection{\@Alph\c@section.\hspace{0em}}
+\renewcommand*\thesubsection{\@arabic\c@subsection.\hspace{0em}}
+\renewcommand*\thesubsubsection{\@alph\c@subsubsection.\hspace{0em}}
 
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -477,7 +482,7 @@
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
     \vskip 0.5em \@plus\p@
-    \setlength\@tempdima{5em}%
+    \setlength\@tempdima{4em}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
@@ -490,11 +495,11 @@
       \penalty\@highpenalty
     \endgroup
   \fi}
-\renewcommand*\l@section{\@dottedtocline{1}{2.8em}{2.2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{5em}{2.75em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{7.8em}{4.1em}}
-\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{6em}}
-\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{5em}}
+\renewcommand*\l@section{\@dottedtocline{1}{2em}{2em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4em}{1.5em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{6em}{4em}}
+\renewcommand*\l@figure{\@dottedtocline{1}{2em}{6em}}
+\renewcommand*\l@table{\@dottedtocline{1}{2em}{5em}}
 
 %%%%%%------------------------
 \renewcommand\thetheorem
@@ -558,7 +563,7 @@
 }
 
 \newlist{daftar}{enumerate}{1}
-\setlist[daftar]{labelindent=2em,leftmargin=*,listparindent=2em,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\arabic*.}
+\setlist[daftar]{labelindent=\parindent,leftmargin=*,listparindent=\parindent,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\arabic*.}
 \newlist{subdaftar}{enumerate}{1}
 \setlist[subdaftar]{leftmargin=*,partopsep=0pt, topsep=0pt,itemsep=0pt,parsep=0pt,label=\alph*.}
 
@@ -640,4 +645,3 @@
 \lefthyphenmin=5
 \righthyphenmin=5
 \sloppy
-%\pagestyle{myheadings}
