@@ -1,0 +1,67 @@
+\chapter{METODE PENELITIAN}
+Bab ini akan menjelaskan metode penelitian yang digunakan dalam penelitian ini secara rinci. Metode penelitian ini mencakup jenis penelitian, tempat dan waktu penelitian, populasi dan sampel, definisi operasional variabel, teknik dan instrumen pengumpulan data, validitas dan reliabilitas instrumen, serta teknik analisis data.  Untuk memberikan gambaran visual mengenai alur penelitian secara keseluruhan, diagram alir penelitian disajikan sebagai berikut:
+	\begin{figure}[h!]
+		\centering
+		\tikzstyle{startstop} = [rectangle, rounded corners=0.5cm, minimum width=2.5cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{io} = [trapezium, trapezium stretches=true, trapezium left angle=70,  trapezium right angle=110, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{decision} = [diamond, minimum height=1cm, aspect=2.5, text centered, draw=black]
+	\tikzset{connector/.style={shape=signal, draw, signal to=south,text width=1cm,text height=0.5cm, align=center},
+	}
+	\tikzstyle{arrow} = [ultra thick,->,>=stealth]
+	
+	\begin{tikzpicture}[node distance=2cm]
+		\node (start) [startstop] {Mulai};
+		\node (in) [io, below of=start] {Data Saham};
+		\node (pro2) [decision, below of=in] {Input Parameter};
+		\node (pro3) [process, below of=pro2] {Hitung nilai $dt, u, d, p, v_{es}$ dan $S_{ij}$};
+		\node (pro4) [process, below of=pro3] {Menghitung harga opsi saat jatuh tempo};
+		\node (pro5) [process, below of=pro4] {Melakukan hitung mundur memperoleh $f_{0,0}$};
+		\node (con) [connector, below of=pro5] {A};
+		\node (stop) [startstop, below of=con] {Selesai};
+		
+		\draw [arrow] (start) -- (in);
+		\draw [arrow] (in) -- (pro2);
+		\draw [arrow] (pro2) -- (pro3);
+		\draw [arrow] (pro3) -- (pro4);
+		\draw [arrow] (pro4) -- (pro5);
+		\draw [arrow] (pro5) -- (con);
+		\draw [arrow] (con) -- (stop);		
+	\end{tikzpicture}
+	\caption{Alur penelitian}
+	\end{figure}
+
+\section{Jenis atau Desain Penelitian}
+Peneliti perlu mengemukakan jenis atau desain penelitian sesuai dengan permasalahan yang akan diteliti.
+\section{Tempat dan Waktu Penelitian}
+Bagian ini berisi deskripsi mengenai kapan dan di mana penelitian akan dilakukan.
+\section{Populasi dan Sampel Penelitian (jika ada)}
+Populasi dan sampel digunakan bila wilayah sasaran peneliti cukup luas sehingga tidak memungkinkan semua anggota dijadikan responden sehingga peneliti melakukan penelitian dengan mengambil sampel secara representatif. Bila wilayah sasaran dapat dijangkau seluruhnya, subbab ini diberi nama sumber data atau subjek penelitian. Dalam bidang bahasa/sastra, digunakan istilah sumber data/subjek penelitian. Untuk penelitian yang menggunakan sampel perlu dijelaskan cara menentukan ukuran sampel dan teknik sampling yang digunakan.
+\section{Definisi Operasional Variabel (jika ada)}
+Definisi Operasional Variabel menjelaskan definisi masing-masing variabel disesuaikan dengan konteks penelitian. Definisi operasional dikembangkan dari teori, definisi konseptual, dan merupakan dasar bagi penentuan indikator- indikator dalam pengembangan instrumen penelitian.
+\section{Teknik dan Instrumen Pengumpulan Data}
+Pada bagian ini perlu dipaparkan teknik pengumpulan data yang digunakan dan instrumen yang dikembangkan. Peneliti perlu menjelaskan proses penyusunan instrumen dan pengujian kualitas instrumen.
+
+\section{Validitas dan Reliabilitas Instrumen (jika ada)}
+Instrumen dinyatakan layak sebagai alat pengumpul data bila memenuhi kriteria valid dan reliabel. Pada bagian ini perlu dijelaskan cara-cara penelusuran validitas dan reliabilitas instrumen. Untuk instrumen berupa tes kognitif dengan bentuk soal pilihan ganda, pengujian kualitas soal diuji dengan indeks kesulitan, daya beda, pengecoh, dan reliabilitas.
+\section{Teknik Analisis Data}
+Pada bagian ini perlu dijelaskan teknik analisis data yang digunakan termasuk uji persyaratan analisis yang dibutuhkan.
+\section{Pelaksanaan Penelitian}
+Kegiatan penelitian ini akan mengikuti jadwal yang telah disusun pada~\ref{tab:kegiatan} berikut.
+
+\begin{table}[h!]
+	\centering
+	\caption{Pelaksanaan Penelitian}
+	\label{tab:kegiatan}
+	\begin{tabular}{|l|llll|llll|llll|llll|}
+		\hline
+		\multicolumn{1}{|c|}{}                           & \multicolumn{4}{c|}{I}                                                                                                                                                                        & \multicolumn{4}{c|}{II}                                                                                                                                                  & \multicolumn{4}{c|}{III}                                                                                                                                                 & \multicolumn{4}{c|}{IV}                                                                                                                                                  \\ \cline{2-17} 
+		\multicolumn{1}{|c|}{\multirow{-2}{*}{Kegiatan}} & \multicolumn{1}{c|}{1}                        & \multicolumn{1}{c|}{2}                        & \multicolumn{1}{c|}{3}                        & \multicolumn{1}{c|}{4}                        & \multicolumn{1}{c|}{1}                        & \multicolumn{1}{c|}{2}                        & \multicolumn{1}{c|}{3}                        & \multicolumn{1}{c|}{4}   & \multicolumn{1}{c|}{1}                        & \multicolumn{1}{c|}{2}                        & \multicolumn{1}{c|}{3}                        & \multicolumn{1}{c|}{4}   & \multicolumn{1}{c|}{1}                        & \multicolumn{1}{c|}{2}                        & \multicolumn{1}{c|}{3}                        & \multicolumn{1}{c|}{4}   \\ \hline
+		Studi Literatur                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    \\ \hline
+		Pengambilan Data                                 & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}    \\ \hline
+		Pengolahan Data                                  & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                                               & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \cellcolor[HTML]{9B9B9B} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                          & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                          \\ \hline
+		Analisis Data                                    & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                                               & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                          & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \cellcolor[HTML]{9B9B9B} & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                          \\ \hline
+		Penarikan Kesimpulan                             & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                                               & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                          & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \cellcolor[HTML]{9B9B9B} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{}                         &                          \\ \hline
+		Penulisan Skripsi                                & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         &                                               & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \multicolumn{1}{l|}{}                         & \cellcolor[HTML]{9B9B9B} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \cellcolor[HTML]{9B9B9B} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}} & \cellcolor[HTML]{9B9B9B} \\ \hline
+	\end{tabular}
+\end{table}
